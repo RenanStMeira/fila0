@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabela de pacientes
+model Pacientes {
+  id String @id @default(uuid())
+  nome String
+  data_nasc String
+  cidade String
+  cid String
+  fileId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  examesImagens ExamesImagens[] @relation("pacienteExameImagem")
+  examesLaboratoriais Laboratorio[] @relation("pacienteExameLaboratorio")
+
+  @@map("pacientes")
+}
+
+// Tabela de exames de imagens
+model ExamesImagens {
+  id String @id @default(uuid())
+  nome String
+  cid String
+  data_pedido String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  paciente Pacientes @relation("pacienteExameImagem", fields: [pacienteId], references: [id])
+  pacienteId String
+
+  @@map("exames_de_imagens")
+}
+
+// Tabela de exames de laboratórios
+model Laboratorio {
+  id String @id @default(uuid())
+  nome String
+  cid String
+  data_pedido String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  paciente Pacientes @relation("pacienteExameLaboratorio", fields: [pacienteId], references: [id])
+  pacienteId String
+
+  @@map("laboratoriais")
+}

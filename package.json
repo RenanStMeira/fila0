@@ -1,0 +1,25 @@
+{
+  "name": "filazero",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev ./src/server.ts",
+    "build": "tsc",
+    "start": "node ./src/server.js",
+    "test": "echo test"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.15.0",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^20.3.1",
+    "prisma": "^4.15.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.3"
+  }
+}
