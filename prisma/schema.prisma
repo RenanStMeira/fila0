@@ -59,3 +59,12 @@ model Laboratorio {
 
   @@map("laboratoriais")
 }
+
+model Amin {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  password String
+  contact String
+  adress String?
+}
